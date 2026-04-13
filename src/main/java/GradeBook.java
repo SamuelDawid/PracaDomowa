@@ -16,6 +16,65 @@ public class GradeBook {
             { 6, 5, 5, 6, 6 },
             { 2, 1, 3, 2, 3 }
     };
+    static final String CSV_DATA = """
+        name,Matematyka,Polski,Angielski,Historia,Fizyka
+        Ala Kowalska,5,4,6,3,5
+        Bartek Nowak,3,3,4,2,0
+        Celina Zielińska,6,5,5,6,6
+        Damian Wójcik,2,1,3,2,3
+        Ewelina Lis,4,4,5,4,5
+        """;
+
+    static String[][] parseCsv(String csv){
+    //parsuje text block do **jagged array** stringów (pierwszy wiersz = nagłówek, reszta = wiersze danych).
+        int startIndex = 0,row =0,col =0;
+        boolean firstRow = true;
+        for (int i = 0; i < csv.length(); i++) {
+
+            if(csv.charAt(i) == ',' && firstRow)
+                col++;
+            else if (csv.charAt(i) == '\n') {
+                firstRow = false;
+                row++;
+            }
+        }
+        String[][] jaggedArray = new String[row ][col +1];
+        int rowCount = 0,columnCount = 0;
+        for (int i = 0; i < csv.length(); i++) {
+            if(csv.charAt(i) == ','){
+                jaggedArray[rowCount][columnCount] = csv.substring(startIndex,i);
+                startIndex = i +1;
+                columnCount++;
+            } else if (csv.charAt(i) == '\n') {
+                jaggedArray[rowCount][columnCount] = csv.substring(startIndex,i);
+                startIndex = i +1;
+                rowCount++;
+                columnCount =0;
+            }
+        }
+        return jaggedArray;
+    }
+    static int[][] extractGrades(String[][] parsed){
+    // z surowej macierzy stringów wyciąga tylko kolumny ocen (pomija nagłówek i kolumnę z nazwiskiem), konwertuje na `int`.
+
+        int[][] grades = new int[parsed.length -1][parsed[0].length-1];
+
+        for (int i = 0; i < parsed.length -1; i++) {
+            for (int j = 0; j < parsed[parsed.length -1].length -1; j++) {
+                grades[i][j] = Integer.parseInt(parsed[i + 1][j +1]);
+            }
+        }
+        return grades;
+
+    }
+    static String[] extractNames(String[][] parsed){
+
+        String[] names = new String[parsed.length -1];
+        for (int i = 1; i < parsed.length ; i++) {
+            names[i -1] = parsed[i][0];
+        }
+        return names;
+    }
     static double average(int[] grades){
         //— średnia z tablicy, **pomija `0`** (brak oceny). Dla pustej / samych zer — zwraca `-1.0
         int numberOfGrades = 0;
@@ -85,9 +144,4 @@ public class GradeBook {
     }
 
     }
-    /*
-
-6. `` — drukuje dla każdego ucznia linię: `imię | średnia | klasyfikacja`
-oraz na końcu globalną maksymalną ocenę znalezioną przez `maxRecursive`.
-     */
 
