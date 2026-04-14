@@ -1,7 +1,6 @@
 import java.util.Arrays;
 
 public class GradeBook {
-
     static final String[] STUDENTSS = {
   "Ala Kowalska", "Bartek Nowak", "Celina Zielińska", "Damian Wójcik"};
 
@@ -24,6 +23,7 @@ public class GradeBook {
         Damian Wójcik,2,1,3,2,3
         Ewelina Lis,4,4,5,4,5
         """;
+    //region PD01B
 
     static String[][] parseCsv(String csv){
     //parsuje text block do **jagged array** stringów (pierwszy wiersz = nagłówek, reszta = wiersze danych).
@@ -54,6 +54,7 @@ public class GradeBook {
         }
         return jaggedArray;
     }
+
     static int[][] extractGrades(String[][] parsed){
     // z surowej macierzy stringów wyciąga tylko kolumny ocen (pomija nagłówek i kolumnę z nazwiskiem), konwertuje na `int`.
 
@@ -75,6 +76,134 @@ public class GradeBook {
         }
         return names;
     }
+
+    static int[] rankStudentsByAverage(String[] names, int[][] grades){
+        //zwraca **tablicę indeksów** posortowaną malejąco wg średniej ucznia.
+        // Oryginalna macierz i tablica nazwisk **nie są modyfikowane**.
+        int[] indexes = new int[names.length];
+        double[] avrages = new double[names.length];
+        for (int i = 0; i < names.length; i++) {
+        avrages[i] = averageForStudent(grades,i);
+        indexes[i] = i;
+        }
+        quicksortIndices(indexes,avrages,0,indexes.length -1);
+        return indexes;
+    }
+    static void quicksortIndices(int[] idx, double[] keys, int lo, int hi){
+            if(lo >= hi) return;
+            int pivot = partition(idx,keys,lo,hi);
+            quicksortIndices(idx,keys,lo,pivot -1);
+            quicksortIndices(idx,keys,pivot +1,hi);
+    }
+    static int partition(int[] idx, double[] keys,int lo,int hi){
+        double pivot = keys[idx[lo]];
+        int i = lo -1;
+        for (int j = lo; j <= hi -1; j++) {
+            if(keys[idx[j]] < pivot){
+                i++;
+                swap(idx,i,j);
+            }
+        }
+        swap(idx,i +1,hi);
+        return i +1 ;
+    }
+    private static void quickSort(int arr[], int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex-1);
+            quickSort(arr, partitionIndex+1, end);
+        }
+    }
+    private static int partition(int arr[], int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin-1);
+
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+
+                swap(arr,i,j);
+            }
+        }
+        swap(arr,i +1,end);
+        return i+1;
+    }
+    static void swap(int[] array,int i,int j){
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    static void printGradeHistogram(int[][] grades){
+        int[] gradeCount = new int[7];
+        for (int i = 0; i < grades.length; i++) {
+            for (int j = 0; j < grades[0].length; j++) {
+                if(grades[i][j] != 0)  gradeCount[grades[i][j]]++;
+            }
+        }
+        int max = 0, sum = 0;
+        for (int i =1;i <gradeCount.length;i++){
+            max = Math.max(max,gradeCount[i]);
+            sum += gradeCount[i];
+        }
+        System.out.println("Histogram ocen (łącznie "+ sum+"):");
+        for (int i = 1; i < gradeCount.length; i++) {
+            int howMany = max > 40 ? gradeCount[i] * 40 / max : gradeCount[i];
+                System.out.print(i +": ");
+                printStar(howMany);
+                System.out.print("(" + gradeCount[i]+ ")");
+                System.out.println();
+        }
+    }
+    private static void printStar(int howMany){
+        for (int i = 0; i < howMany; i++) {
+            System.out.print("*");
+        }
+
+    }
+    static double median(int[] grades){
+
+        int[] medianGrade = takeOutZeros(grades);
+        if(medianGrade.length == 0) return -1;
+        quickSort(medianGrade,0,medianGrade.length -1);
+
+        if(medianGrade.length % 2 != 0){
+           return medianGrade[medianGrade.length /2];
+        }
+        return  (medianGrade[medianGrade.length / 2 -1] + medianGrade[medianGrade.length / 2 ]) /2.0;
+    }
+    static double stddev(int[] grades){
+        int[] avrageGrade = takeOutZeros(grades);
+        double avg = average(avrageGrade);
+        double sum = 0;
+        for (int i = 0; i < avrageGrade.length; i++) {
+            sum += (avrageGrade[i] - avg) * (avrageGrade[i] - avg);
+        }
+
+        sum = sum / (avrageGrade.length -1);
+        return Math.sqrt(sum);
+    }
+    static int[] takeOutZeros(int[] grades){
+        int count = 0;
+        for (int i = 0; i < grades.length; i++) {
+            if(grades[i] != 0){
+                count++;
+            }
+        }
+        int[] arrayToReturn = new int[count];
+        int index=0;
+        for (int i = 0; i < grades.length; i++) {
+            if(grades[i] != 0){
+                arrayToReturn[index] = grades[i];
+                index++;
+            }
+        }
+        return arrayToReturn;
+
+    }
+
+    //endregion
+    //region PD01A
     static double average(int[] grades){
         //— średnia z tablicy, **pomija `0`** (brak oceny). Dla pustej / samych zer — zwraca `-1.0
         int numberOfGrades = 0;
@@ -85,9 +214,7 @@ public class GradeBook {
             if (grade != 0)
                 numberOfGrades++;
         }
-
         if(sum == 0 )  return -1.0;
-
         return (double) sum / numberOfGrades;
     }
     static double averageForStudent(int[][] grades, int studentIndex){
@@ -142,6 +269,7 @@ public class GradeBook {
         }
         System.out.println("Globalna max ocena: " + maxRecursive(GRADES));
     }
-
+    //endregion
     }
+
 
