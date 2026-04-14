@@ -14,5 +14,7 @@ public class Main {
 //        System.out.println(Arrays.toString(names));
 //        System.out.println(Arrays.toString(GradeBook.rankStudentsByAverage(GradeBook.STUDENTSS, GradeBook.GRADES)));
         GradeBook.printGradeHistogram(GradeBook.GRADES);
+
+        GradeBook.printRankingTable(GradeBook.STUDENTSS,GradeBook.GRADES);
     }
 }

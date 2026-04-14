@@ -23,6 +23,57 @@ public class GradeBook {
         Damian Wójcik,2,1,3,2,3
         Ewelina Lis,4,4,5,4,5
         """;
+    //region PD01C
+    static double[] movingAverage(int[] grades, int window){
+        int[] gradesWithoutZero = takeOutZeros(grades);
+        double[] result = new double[gradesWithoutZero.length];
+
+        for (int i = 0; i < result.length; i++) {
+            if (i < window -1) result[i] = -1.0;
+            else {
+                int sum = 0;
+                for(int j = i - (window -1);j <= i;j++)
+                    sum += gradesWithoutZero[j];
+                result[i] = (double) sum / window;
+            }
+        }
+        return result;
+
+    }
+    static boolean canBePromoted(int[] grades){
+        int[] gradesWithoutZero = takeOutZeros(grades);
+        int gradesCountBelowThree = 0;
+        double sum =0;
+        boolean isOne = false;
+        for (int i = 0; i < gradesWithoutZero.length; i++) {
+            if(gradesWithoutZero[i] == 1) isOne = true;
+            if(gradesWithoutZero[i] < 3) gradesCountBelowThree++;
+            sum+= gradesWithoutZero[i];
+        }
+        if(isOne) return false;
+        if((sum / gradesWithoutZero.length) < 2.5) return false;
+        if (gradesCountBelowThree > 2) return false;
+        return true;
+
+    }
+    static void printRankingTable(String[] names, int[][] grades){
+
+        int longestName = 0;
+        for(String s : names)
+            longestName = Math.max(longestName,s.length());
+
+        int[] rankIndex = rankStudentsByAverage(names,grades);
+
+        for(int i =0; i < rankIndex.length;i++){
+            System.out.print(i + 1 + " ");
+            System.out.print(names[rankIndex[i]]);
+            System.out.print(averageForStudent(grades,rankIndex[i]));
+            System.out.print(classify(averageForStudent(grades,rankIndex[i])));
+            System.out.println();
+        }
+
+    }
+    //endregion
     //region PD01B
 
     static String[][] parseCsv(String csv){
@@ -96,10 +147,10 @@ public class GradeBook {
             quicksortIndices(idx,keys,pivot +1,hi);
     }
     static int partition(int[] idx, double[] keys,int lo,int hi){
-        double pivot = keys[idx[lo]];
+        double pivot = keys[idx[hi]];
         int i = lo -1;
         for (int j = lo; j <= hi -1; j++) {
-            if(keys[idx[j]] < pivot){
+            if(keys[idx[j]] > pivot){
                 i++;
                 swap(idx,i,j);
             }
@@ -180,8 +231,7 @@ public class GradeBook {
             sum += (avrageGrade[i] - avg) * (avrageGrade[i] - avg);
         }
 
-        sum = sum / (avrageGrade.length -1);
-        return Math.sqrt(sum);
+        return Math.sqrt(sum / (avrageGrade.length -1));
     }
     static int[] takeOutZeros(int[] grades){
         int count = 0;
