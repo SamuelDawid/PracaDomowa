@@ -30,5 +30,6 @@ public class Main {
                 new BigDecimal("0.05"),
                 ZonedDateTime.now(), LocalDate.now());
         System.out.println(InvoiceCalculator.renderSimpleReport(ZoneId.of("Europe/Warsaw"),inv1,inv2,inv3));
+
     }
 }
