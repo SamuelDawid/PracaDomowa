@@ -67,14 +67,19 @@ public class GradeBook {
             longestName = Math.max(longestName, s.length());
 
         int[] rankIndex = rankStudentsByAverage(names, grades);
+        System.out.println("╔"+ "═".repeat(4)+"╦" + "═".repeat(longestName + 2) + "╦"+"═".repeat(9)+"╦"+"═".repeat(14)+"╗");
+        System.out.println("║ Lp ║ " + String.format("%-" + longestName + "s", "Imię") + " ║ Średnia ║ Klasyfikacja ║");
+        System.out.println("╠"+ "═".repeat(4)+"╬" + "═".repeat(longestName + 2) + "╬"+"═".repeat(9)+"╬"+"═".repeat(14)+"╣");
 
         for (int i = 0; i < rankIndex.length; i++) {
-            System.out.print(i + 1 + " ");
-            System.out.print(names[rankIndex[i]]);
-            System.out.print(averageForStudent(grades, rankIndex[i]));
-            System.out.print(classify(averageForStudent(grades, rankIndex[i])));
-            System.out.println();
+            System.out.println("║ "+String.format("%2d",(i +1))+" ║ " +
+                    String.format("%-" + longestName + "s", names[rankIndex[i]]) + " ║ "+
+                    String.format("%7.2f",averageForStudent(grades, rankIndex[i]))+" ║ "+
+                    String.format("%-12s",classify(averageForStudent(grades, rankIndex[i])))+" ║"
+            );
+
         }
+        System.out.println("╚"+ "═".repeat(4)+"╩" + "═".repeat(longestName + 2) + "╩"+"═".repeat(9)+"╩"+"═".repeat(14)+"╝");
 
     }
     //endregion
