@@ -1,3 +1,5 @@
+package BillingServices;
+
 import Excepcions.NotAllInvoicesShareSameCurrency;
 import records.Invoice;
 import records.Money;
@@ -5,14 +7,12 @@ import records.Money;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class InvoiceCalculatorTest {
     // TEST INVOICES //
-    Invoice inv1 = new Invoice("INV/2024/01/001", "Jan Kowalski",
+    Invoice inv1 = new Invoice("INV/2024/10/001", "Jan Kowalski",
             new Money(new BigDecimal("150.00"), "PLN"),
             new BigDecimal("0.23"),
             ZonedDateTime.now(), LocalDate.now());
@@ -58,7 +58,7 @@ class InvoiceCalculatorTest {
         Invoice test =new Invoice("INV/001", "Test Client", new Money(net,"PLN"), vat, ZonedDateTime.now(), LocalDate.now());
         //Money result = new Money(new BigDecimal("41.00"),"PLN"); // returns 41.
         Money result = new Money(new BigDecimal("11.15"),"PLN");
-        assertEquals(result,InvoiceCalculator.grossAmount(test));
+        assertEquals(result, InvoiceCalculator.grossAmount(test));
     }
     @org.junit.jupiter.api.Test
     void vatAmount() {

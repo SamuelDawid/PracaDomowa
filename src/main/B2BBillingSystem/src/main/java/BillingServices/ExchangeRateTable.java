@@ -1,6 +1,7 @@
-package records;
+package BillingServices;
 
 import Excepcions.NoRateAvailableException;
+import records.Money;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,7 +12,7 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 public record ExchangeRateTable(Map<LocalDate, Map<String, BigDecimal>> ratesByDate) {
-    static ExchangeRateTable sampleRates() {
+    public static ExchangeRateTable sampleRates() {
         Map<LocalDate, Map<String, BigDecimal>> m = new HashMap<>();
         m.put(LocalDate.of(2024, 10, 15), Map.of(
                 "PLN", new BigDecimal("1.0000"),
@@ -63,19 +64,17 @@ public record ExchangeRateTable(Map<LocalDate, Map<String, BigDecimal>> ratesByD
         return new ExchangeRateTable(m);
     }
 
-     static BigDecimal rateOf(String currency, LocalDate onDate){
+      BigDecimal rateOf(String currency, LocalDate onDate){
         TreeMap<LocalDate, Map<String, BigDecimal>> sortedMap = new TreeMap<>(ExchangeRateTable.sampleRates().ratesByDate);
         LocalDate closestDate = Optional.ofNullable(sortedMap.floorKey(onDate)).orElseThrow(() ->new NoRateAvailableException(currency,onDate));
         return Optional.ofNullable(sortedMap.get(closestDate).get(currency)).orElseThrow(() -> new NoRateAvailableException(currency,onDate)) ;
     }
 
-    static Money convertTo(Money source, String targetCurrency, LocalDate onDate){
+     Money convertTo(Money source, String targetCurrency, LocalDate onDate){
         BigDecimal targetRate = rateOf(targetCurrency,onDate);
         BigDecimal amount = source.amount();
         BigDecimal currentCurrency = rateOf(source.currency(),onDate);
-        if(targetCurrency.equals("PLN"))
-            return new Money(amount.multiply(targetRate),targetCurrency);
-        else
-            return new Money((amount.multiply(currentCurrency.setScale(2, RoundingMode.HALF_EVEN)).divide(targetRate,2,RoundingMode.HALF_EVEN)),targetCurrency);
+
+        return new Money((amount.multiply(currentCurrency.setScale(2, RoundingMode.HALF_EVEN)).divide(targetRate,2,RoundingMode.HALF_EVEN)),targetCurrency);
     }
 }

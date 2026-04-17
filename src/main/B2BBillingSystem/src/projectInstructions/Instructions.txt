@@ -69,7 +69,7 @@ record Invoice(
 
 ### A2. Gross Amount Calculator
 
-Class `InvoiceCalculator` with the following methods:
+Class `BillingServices.InvoiceCalculator` with the following methods:
 
 - `static Money grossAmount(Invoice i)` — returns the gross amount (`net * (1 + vatRate)`), rounded to 2 decimal places using `HALF_EVEN`, in the same currency as net.
 - `static Money vatAmount(Invoice i)` — the VAT amount alone.

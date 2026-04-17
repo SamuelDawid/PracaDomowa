@@ -1,3 +1,5 @@
+package BillingServices;
+
 import Excepcions.NoInvoicesFoundException;
 import Excepcions.NotAllInvoicesShareSameCurrency;
 import records.Invoice;
@@ -6,7 +8,6 @@ import records.Money;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
