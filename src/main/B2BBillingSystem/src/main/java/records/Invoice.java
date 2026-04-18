@@ -10,7 +10,8 @@ public record Invoice(String number,                // e.g. "INV/2024/10/001"
                       Money netAmount,
                       BigDecimal vatRate,           // 0.23 for 23%
                       ZonedDateTime issuedAt,
-                      LocalDate dueDate   ) {
+                      LocalDate dueDate,
+                      boolean splitPayment) {
     public Invoice {
         Objects.requireNonNull(number);
         Objects.requireNonNull(clientName);

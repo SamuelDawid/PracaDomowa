@@ -20,19 +20,19 @@ class BillingServiceTest {
             new Money(new BigDecimal("100.00"), "PLN"),
             new BigDecimal("0.23"),
             ZonedDateTime.of(2024, 10, 15, 10, 0, 0, 0, ZoneId.of("Europe/Warsaw")),
-            LocalDate.of(2024, 10, 15));
+            LocalDate.of(2024, 10, 15),false);
 
     Invoice invB = new Invoice("INV/2024/10/002", "Anna Nowak",
             new Money(new BigDecimal("200.00"), "PLN"),
             new BigDecimal("0.08"),
             ZonedDateTime.of(2024, 10, 20, 12, 0, 0, 0, ZoneId.of("Europe/Warsaw")),
-            LocalDate.of(2024, 10, 20));
+            LocalDate.of(2024, 10, 20),false);
 
     Invoice invC = new Invoice("INV/2024/11/001", "Firma XYZ",
             new Money(new BigDecimal("50.00"), "PLN"),
             new BigDecimal("0.23"),
             ZonedDateTime.of(2024, 11, 5, 9, 0, 0, 0, ZoneId.of("Europe/Warsaw")),
-            LocalDate.of(2024, 11, 5));
+            LocalDate.of(2024, 11, 5),false);
     List<Invoice> testInv = new ArrayList<>(List.of(invA,invB,invC));
     ExchangeRateTable rateTable = new ExchangeRateTable(ExchangeRateTable.sampleRates().ratesByDate());
     @Test

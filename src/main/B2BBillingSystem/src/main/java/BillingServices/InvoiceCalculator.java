@@ -2,14 +2,18 @@ package BillingServices;
 
 import Excepcions.NoInvoicesFoundException;
 import Excepcions.NotAllInvoicesShareSameCurrency;
+import Excepcions.SplitNotAvailableException;
+import records.CorrectionInvoice;
 import records.Invoice;
 import records.Money;
+import records.SplitPaymentBreakdown;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 
 public class InvoiceCalculator {
     static Money grossAmount(Invoice i){
@@ -50,5 +54,21 @@ public class InvoiceCalculator {
         }
         StringBuilder line = new StringBuilder("-".repeat(n)+ "\n");
         return header.append(line).append(Invoices).append(line).toString();
+    }
+
+    static SplitPaymentBreakdown split(Invoice i){
+        if(!i.splitPayment()) throw new SplitNotAvailableException();
+
+            return new SplitPaymentBreakdown(i.netAmount(),vatAmount(i));
+    }
+    static Money effectiveGross(Invoice original, List<CorrectionInvoice> corrections){
+        //— gross amount including all corrections (summing in one currency with currency consistency check)
+        BigDecimal grossAmount = grossAmount(original).amount();
+        BigDecimal correction = new BigDecimal("0.0");
+        for (CorrectionInvoice inv : corrections){
+            if(!inv.amountAdjustment().currency().equals(original.netAmount().currency())) throw new IllegalArgumentException("Not all invoice have the same currency.");
+            correction = correction.add(inv.amountAdjustment().amount());
+        }
+        return new Money(grossAmount.add(correction),original.netAmount().currency());
     }
 }
