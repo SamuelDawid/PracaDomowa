@@ -1,7 +1,9 @@
 package BillingServices;
 
 import Excepcions.NotAllInvoicesShareSameCurrency;
+import Excepcions.ProcessRefundException;
 import Excepcions.SplitNotAvailableException;
+import GlobalValues.CorrectionInvoiceType;
 import org.junit.Test;
 import records.CorrectionInvoice;
 import records.Invoice;
@@ -57,14 +59,13 @@ public class InvoiceCalculatorTest {
         );
     }
 
-    private static CorrectionInvoice correction(String adjustmentAmount, String currency) {
+    private static CorrectionInvoice correction(String adjustmentAmount, String currency,Enum type) {
         return new CorrectionInvoice(
                 "COR-" + adjustmentAmount,        // unique enough for a test
                 "INV-ORIGINAL",
                 money(adjustmentAmount, currency),
                 LocalDate.of(2026, 1, 20),
-                "test correction"
-        );
+                "test correction",type);
     }
     @org.junit.jupiter.api.Test
     void grossAmount() {
@@ -154,7 +155,7 @@ public class InvoiceCalculatorTest {
     public void effectiveGross_singleCorrection_addsAdjustmentToGross() {
         ZonedDateTime issued = ZonedDateTime.of(2026, 1, 15, 10, 0, 0, 0, ZoneId.of("UTC"));
         Invoice original = invoice("INV-201", "Base", issued, "1000.00", "EUR", false);
-        CorrectionInvoice c1 = correction("50.00", "EUR"); // adjust constructor if needed
+        CorrectionInvoice c1 = correction("50.00", "EUR", CorrectionInvoiceType.SURCHARGE); // adjust constructor if needed
 
         Money result = InvoiceCalculator.effectiveGross(original, Arrays.asList(c1));
 
@@ -166,24 +167,42 @@ public class InvoiceCalculatorTest {
     public void effectiveGross_multipleCorrections_sumsAllAdjustments() {
         ZonedDateTime issued = ZonedDateTime.of(2026, 1, 15, 10, 0, 0, 0, ZoneId.of("UTC"));
         Invoice original = invoice("INV-202", "Base", issued, "1000.00", "EUR", false);
-        CorrectionInvoice c1 = correction("10.00",  "EUR");
-        CorrectionInvoice c2 = correction("20.00",  "EUR");
-        CorrectionInvoice c3 = correction("30.50",  "EUR");
+        CorrectionInvoice c1 = correction("10.00",  "EUR",CorrectionInvoiceType.SURCHARGE);
+        CorrectionInvoice c2 = correction("20.00",  "EUR",CorrectionInvoiceType.SURCHARGE);
+        CorrectionInvoice c3 = correction("30.50",  "EUR",CorrectionInvoiceType.SURCHARGE);
 
         Money result = InvoiceCalculator.effectiveGross(original, Arrays.asList(c1, c2, c3));
 
         BigDecimal expected = InvoiceCalculator.grossAmount(original).amount().add(new BigDecimal("60.50"));
         assertEquals(0, expected.compareTo(result.amount()));
     }
-
     @Test
-    public void effectiveGross_multipleCorrectionsSummed_equalsOriginalPlusAll() {
-        // Replaces the earlier "sum to zero" and "negative adjustment" tests, which relied
-        // on negative Money values that your Money record forbids.
+    public void effectiveGross_multipleCorrectionsSummed_equalsMinusAll(){
         ZonedDateTime issued = ZonedDateTime.of(2026, 1, 15, 10, 0, 0, 0, ZoneId.of("UTC"));
         Invoice original = invoice("INV-204", "Base", issued, "1000.00", "EUR", false);
-        CorrectionInvoice c1 = correction("25.00", "EUR");
-        CorrectionInvoice c2 = correction("75.50", "EUR");
+        CorrectionInvoice c1 = correction("25.00", "EUR",CorrectionInvoiceType.REFUND);
+        CorrectionInvoice c2 = correction("75.00", "EUR",CorrectionInvoiceType.REFUND);
+
+        Money result = InvoiceCalculator.effectiveGross(original,Arrays.asList(c1,c2));
+        BigDecimal expected = InvoiceCalculator.grossAmount(original).amount().subtract(new BigDecimal("100"));
+        assertEquals(expected,result.amount());
+    }
+    @Test(expected = ProcessRefundException.class)
+    public void effectiveGross_multipleCorrectionsSummed_throwPre(){
+        ZonedDateTime issued = ZonedDateTime.of(2026, 1, 15, 10, 0, 0, 0, ZoneId.of("UTC"));
+        Invoice original = invoice("INV-204", "Base", issued, "100.00", "EUR", false);
+        CorrectionInvoice c1 = correction("40.00", "EUR",CorrectionInvoiceType.REFUND);
+        CorrectionInvoice c2 = correction("90.00", "EUR",CorrectionInvoiceType.REFUND);
+
+        InvoiceCalculator.effectiveGross(original,Arrays.asList(c1,c2));
+
+    }
+    @Test
+    public void effectiveGross_multipleCorrectionsSummed_equalsOriginalPlusAll() {
+        ZonedDateTime issued = ZonedDateTime.of(2026, 1, 15, 10, 0, 0, 0, ZoneId.of("UTC"));
+        Invoice original = invoice("INV-204", "Base", issued, "1000.00", "EUR", false);
+        CorrectionInvoice c1 = correction("25.00", "EUR",CorrectionInvoiceType.SURCHARGE);
+        CorrectionInvoice c2 = correction("75.50", "EUR",CorrectionInvoiceType.SURCHARGE);
 
         Money result = InvoiceCalculator.effectiveGross(original, Arrays.asList(c1, c2));
 
@@ -195,7 +214,7 @@ public class InvoiceCalculatorTest {
     public void effectiveGross_correctionWithDifferentCurrency_throwsIllegalArgumentWithMessage() {
         ZonedDateTime issued = ZonedDateTime.of(2026, 1, 15, 10, 0, 0, 0, ZoneId.of("UTC"));
         Invoice original = invoice("INV-205", "Base", issued, "1000.00", "EUR", false);
-        CorrectionInvoice badCurrency = correction("50.00", "USD");
+        CorrectionInvoice badCurrency = correction("50.00", "USD",CorrectionInvoiceType.SURCHARGE);
 
         try {
             InvoiceCalculator.effectiveGross(original, Arrays.asList(badCurrency));

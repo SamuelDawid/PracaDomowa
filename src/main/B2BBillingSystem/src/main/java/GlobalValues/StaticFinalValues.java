@@ -1,8 +1,6 @@
-package StaticFinal;
+package GlobalValues;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Year;
 
 public class StaticFinalValues {
     public static final String BStargetCurrency = "PLN";

@@ -2,7 +2,6 @@ package BillingServices;
 
 import records.Invoice;
 import records.Money;
-import records.SplitPaymentBreakdown;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -10,7 +9,7 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static StaticFinal.StaticFinalValues.*;
+import static GlobalValues.StaticFinalValues.*;
 
 public class BillingService {
     public static Map<YearMonth, Money> monthlyGrossInPln(List<Invoice> invoices, ExchangeRateTable rates){

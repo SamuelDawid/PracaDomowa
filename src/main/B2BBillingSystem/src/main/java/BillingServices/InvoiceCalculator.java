@@ -2,7 +2,9 @@ package BillingServices;
 
 import Excepcions.NoInvoicesFoundException;
 import Excepcions.NotAllInvoicesShareSameCurrency;
+import Excepcions.ProcessRefundException;
 import Excepcions.SplitNotAvailableException;
+import GlobalValues.CorrectionInvoiceType;
 import records.CorrectionInvoice;
 import records.Invoice;
 import records.Money;
@@ -62,12 +64,15 @@ public class InvoiceCalculator {
             return new SplitPaymentBreakdown(i.netAmount(),vatAmount(i));
     }
     static Money effectiveGross(Invoice original, List<CorrectionInvoice> corrections){
-        //— gross amount including all corrections (summing in one currency with currency consistency check)
         BigDecimal grossAmount = grossAmount(original).amount();
         BigDecimal correction = new BigDecimal("0.0");
         for (CorrectionInvoice inv : corrections){
             if(!inv.amountAdjustment().currency().equals(original.netAmount().currency())) throw new IllegalArgumentException("Not all invoice have the same currency.");
-            correction = correction.add(inv.amountAdjustment().amount());
+            if(inv.type().equals(CorrectionInvoiceType.REFUND)) correction = correction.subtract(inv.amountAdjustment().amount());
+            else correction = correction.add(inv.amountAdjustment().amount());
+        }
+        if(grossAmount.add(correction).compareTo(BigDecimal.ZERO) < 0){
+         throw new ProcessRefundException(grossAmount.add(correction));
         }
         return new Money(grossAmount.add(correction),original.netAmount().currency());
     }
