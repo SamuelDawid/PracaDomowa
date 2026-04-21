@@ -41,7 +41,6 @@ public class InvoiceCalculatorTest {
             new Money(new BigDecimal("200.50"), "YAP"),
             new BigDecimal("0.05"),
             ZonedDateTime.now(), LocalDate.now(),false);
-    // --- updated factories matching your actual record definitions ---
     private static Money money(String amount, String currency) {
         return new Money(new BigDecimal(amount), currency);
     }
