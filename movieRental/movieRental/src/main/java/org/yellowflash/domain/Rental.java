@@ -1,13 +1,12 @@
 package org.yellowflash.domain;
 
-import lombok.NonNull;
 import org.apache.commons.lang3.Validate;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 public record Rental(int id,
-                     int moveId,
+                     int movieId,
                      int customerId,
                      LocalDate rentDate,
                      LocalDate plannedReturnDate,
@@ -19,9 +18,9 @@ public record Rental(int id,
         Validate.isTrue(plannedReturnDate.isAfter(rentDate),"Planned Return Date must be after Rent Day");
     }
 
-    Rental withReturn(LocalDate today){
+    public Rental withReturn(LocalDate today){
 
-        return new Rental(this.id,this.moveId,this.customerId,this.rentDate,this.plannedReturnDate,
+        return new Rental(this.id,this.movieId,this.customerId,this.rentDate,this.plannedReturnDate,
                 Optional.of(today));
     }
 }
