@@ -28,11 +28,13 @@ class CatalogTest {
         assertThat(catalog.contains(1)).isTrue();
         assertThat(catalog.contains(99)).isFalse();
     }
+    // Validate
     @Test
     void addThrIllegalArgumentException(){
         assertThrows(IllegalArgumentException.class,
                 () -> catalog.add(1, new Movie(1, "Matrix", "Wachowski", 1999, Category.ACTION)));
     }
+
     @Test
     void addNull(){
         assertThrows(NullPointerException.class,
