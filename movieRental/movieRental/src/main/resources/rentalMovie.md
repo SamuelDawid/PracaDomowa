@@ -225,14 +225,14 @@ public record MovieNotFound(int movieId) implements RentalError {
 }
 ```
 
-| Rekord                  | Pola                                                     | Format `message()`                                                                              |
-|-------------------------|----------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| `MovieNotFound`         | `int movieId`                                            | `Movie with id {movieId} does not exist`                                                        |
-| `CustomerNotFound`      | `int customerId`                                         | `Customer with id {customerId} does not exist`                                                  |
-| `CustomerBlocked`       | `int customerId, CustomerStatus status`                  | `Customer with id {customerId} has status {status} and cannot rent`                             |
-| `TooYoungForCategory`   | `int customerAge, Category category, int minimumAge`     | `Customer is {customerAge} years old, category {category} requires {minimumAge}+`               |
-| `MovieAlreadyRented`    | `int movieId, String title`                              | `Movie '{title}' is already rented`                                                             |
-| `RentalLimitExceeded`   | `int customerId, int active, int limit`                  | `Customer with id {customerId} already has {active} active rentals (limit {limit})`             |
+| Rekord                  | Pola                                                     | Format `message()`                                                                |
+|-------------------------|----------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `MovieNotFound`         | `int movieId`                                            | `Movie with id {movieId} does not exist`                                          |
+| `CustomerNotFound`      | `int customerId`                                         | `Customer with id {customerId} does not exist`                                    |
+| `CustomerBlocked`       | `int customerId, CustomerStatus status`                  | `Customer with id {customerId} has status {status} and cannot rent`               |
+| `TooYoungForCategory`   | `int customerAge, Category category, int minimumAge`     | `Customer is {customerAge} years old, category {category} requires {minimumAge}+` |
+| `MovieAlreadyRented`    | `int movieId, String title`                              | `Movie '{title}' is already rented`                                               |
+| `RentalLimitExceeded`   | `int customerId, int active, int limit`                  | `c`                                                                               |
 
 ### C3. `RentalException` (checked)
 
