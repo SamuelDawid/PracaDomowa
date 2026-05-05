@@ -1,8 +1,10 @@
 package org.yellowflash.error;
 
-public final class CustomerBlocked implements RentalError {
+import org.yellowflash.domain.enums.CustomerStatus;
+
+public record CustomerBlocked(int customerId, CustomerStatus status) implements RentalError {
     @Override
     public String message() {
-        return "User account block, please contact custer support";
+        return "Customer with id %d has status %s and cannot rent".formatted(customerId, status);
     }
 }

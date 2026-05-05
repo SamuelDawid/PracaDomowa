@@ -1,8 +1,8 @@
 package org.yellowflash.error;
 
-public final class MovieNotFound implements RentalError {
+public record MovieNotFound(int movieId) implements RentalError {
     @Override
     public String message() {
-        return "Movie not found";
+        return "Movie with id %d does not exist".formatted(movieId);
     }
 }

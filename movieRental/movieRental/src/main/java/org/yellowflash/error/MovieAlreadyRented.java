@@ -1,8 +1,8 @@
 package org.yellowflash.error;
 
-public final class MovieAlreadyRented implements RentalError {
+public record MovieAlreadyRented(int movieId, String title) implements RentalError {
     @Override
     public String message() {
-        return "Movie rented already";
+        return "Movie '%s' is already rented".formatted(title);
     }
 }

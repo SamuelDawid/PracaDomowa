@@ -1,8 +1,8 @@
 package org.yellowflash.error;
 
-public final class CustomerNotFound implements RentalError {
+public record CustomerNotFound(int customerId) implements RentalError {
     @Override
     public String message() {
-        return "Custer not found";
+        return "Customer with id %d does not exist".formatted(customerId);
     }
 }

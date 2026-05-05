@@ -1,8 +1,8 @@
 package org.yellowflash.error;
 
-public final class RentalLimitExceeded implements RentalError {
+public record RentalLimitExceeded(int customerId, int active, int limit) implements RentalError {
     @Override
     public String message() {
-        return "Rental limit has been exceeded";
+        return "Customer with id %d already has %d active rentals (limit %d)".formatted(customerId, active, limit);
     }
 }
