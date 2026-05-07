@@ -14,7 +14,7 @@ public interface TwoKeyMap<K1, K2, V> extends Iterable<TwoKeyMap.Entry<K1, K2, V
 
     // Widoki i iteracja
     java.util.Set<Entry<K1, K2, V>> entrySet();
-    //java.util.Set<Pair<K1, K2>> keySet();
+    java.util.Set<Pair<K1, K2>> keySet();
     java.util.Collection<V> values();
 
     // Operacje masowe
