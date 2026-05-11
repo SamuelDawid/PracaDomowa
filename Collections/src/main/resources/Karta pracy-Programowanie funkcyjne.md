@@ -7,7 +7,8 @@
 **Cel:** Zbudować mini-kalkulator — cztery `BiFunction` (`+`, `-`, `*`, `/`) wybierane na podstawie znaku.
 
 **Teoria w pigułce:**
-`BiFunction<T, U, R>` to `Function`, ale przyjmuje **dwa** argumenty — typu `T` i `U`. Metoda to `apply(T t, U u)`. Świetnie pasuje do operacji typu „dwa wejścia, jeden wynik": dodawanie, łączenie, BMI, podatek od kwoty itp.
+`BiFunction<T, U, R>` to `Function`, ale przyjmuje **dwa** argumenty — typu `T` i `U`. Metoda to `apply(T t, U u)`. 
+Świetnie pasuje do operacji typu „dwa wejścia, jeden wynik": dodawanie, łączenie, BMI, podatek od kwoty itp.
 
 ### Kod
 
@@ -16,6 +17,8 @@ Utwórz plik: `src/main/java/com/example/lambdy/zad01/Kalkulator.java`
 ```java
 package com.example.lambdy.zad01;
 
+import javax.xml.validation.Validator;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 
@@ -30,6 +33,7 @@ public class Kalkulator {
         BiFunction<Integer, Integer, Integer> sub = (a, b) -> a - b;
         BiFunction<Integer, Integer, Integer> mul = (a, b) -> a * b;
         BiFunction<Integer, Integer, Integer> div = (a, b) -> a / b;
+        BiFunction<Integer, Integer, Integer> div = (a, b) -> a % b;
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Podaj a: ");
@@ -43,7 +47,10 @@ public class Kalkulator {
             case "+" -> add;
             case "-" -> sub;
             case "*" -> mul;
-            case "/" -> div;
+            case "/" -> {
+                
+                        div;
+            }
             default -> throw new IllegalArgumentException("Nieznany operator: " + op);
         };
 
