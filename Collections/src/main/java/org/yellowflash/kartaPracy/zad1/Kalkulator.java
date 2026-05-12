@@ -1,7 +1,8 @@
-package org.yellowflash.kartaPracy;
+package org.yellowflash.kartaPracy.zad1;
 
 import java.util.Scanner;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Kalkulator {
     static Double calculate(double a, double b, BiFunction<Double, Double, Double> op) {
