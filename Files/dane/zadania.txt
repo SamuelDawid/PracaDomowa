@@ -1,0 +1,6 @@
+[ ] Kupić chleb
+[ ] Wynieść śmieci
+[x] Odpisać na maila
+[ ] Zadzwonić do mamy
+[x] Zapłacić rachunek za prąd
+[ ] Wyrzucić śmieci od sąsiada
