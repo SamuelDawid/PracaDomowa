@@ -1,0 +1,2 @@
+Plik z metodami pomocniczymi.
+Nie ma tu nic o naszym ulubieńcu.
