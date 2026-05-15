@@ -1,0 +1,4 @@
+public class Main {
+    // KOT to nasz bohater
+    String kot = "Mruczek";
+}

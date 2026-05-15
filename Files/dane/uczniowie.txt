@@ -1,0 +1,4 @@
+Anna Kowalska,5
+Bartek Nowak,3
+Celina Wiśniewska,4
+Kowalska Anna,5

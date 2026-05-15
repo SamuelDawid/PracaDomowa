@@ -1,0 +1,1 @@
+Tu jest dużo o kotach, ale to plik .md — pomiń mnie.

@@ -1,0 +1,4 @@
+Bardzo ważny dokument.
+Numer faktury: FV/2024/001
+Kwota: 12 345,67 zł
+Data wystawienia: 2024-01-15
