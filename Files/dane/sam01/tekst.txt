@@ -1,10 +1,4 @@
-Program wczytuje plik tekstowy podany jako pierwszy argument main (jeśli nie ma argumentu — używa dane/sam01/tekst.txt) i wypisuje:
-
-liczbę linii,
-liczbę słów (oddzielonych spacjami / białymi znakami),
-liczbę znaków (bez znaków końca linii),
-najdłuższe słowo w pliku.
-Wymagania:
-
-Najdłuższe słowo: jeśli jest remis, wypisz pierwsze napotkane.
-Pusty plik nie powinien wybuchnąć — wypisz wszędzie 0 i "(brak)" dla słowa.
+Ala ma kota
+a kot ma Alę
+ten kot bardzo lubi mleko
+i nadzwyczajnie smakowite ryby
