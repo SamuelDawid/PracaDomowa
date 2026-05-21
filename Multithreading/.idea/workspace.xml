@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3466c556-d3df-4a85-9784-01d335611da1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/yellowflash/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/yellowflash/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/yellowflash/zad02/zad02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/yellowflash/zad02/zad02.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +50,11 @@
   "keyToString": {
     "Application.WatkiNowoczsnie.executor": "Run",
     "Application.zad01.executor": "Run",
+    "Application.zad02.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Multithreading",
     "kotlin-language-version-configured": "true"
@@ -70,8 +66,11 @@
       <recent name="E:\GitHub\PracaDomowa\Multithreading\src\lekcje" />
       <recent name="E:\GitHub\PracaDomowa\Multithreading\src" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="org.yellowflash.zad02" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.zad01">
+  <component name="RunManager" selected="Application.zad02">
     <configuration name="WatkiNowoczsnie" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lekcje.WatkiNowoczsnie" />
       <module name="Multithreading" />
@@ -98,8 +97,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="zad02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad02.zad02" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad02.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.zad02" />
         <item itemvalue="Application.zad01" />
         <item itemvalue="Application.WatkiNowoczsnie" />
       </list>
