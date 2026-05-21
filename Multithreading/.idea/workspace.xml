@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3466c556-d3df-4a85-9784-01d335611da1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/yellowflash/zad02/zad02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/yellowflash/zad02/zad02.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +49,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.FactorialTask.executor": "Run",
     "Application.WatkiNowoczsnie.executor": "Run",
     "Application.zad01.executor": "Run",
     "Application.zad02.executor": "Run",
+    "Application.zad03.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -70,7 +73,20 @@
       <recent name="org.yellowflash.zad02" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.zad02">
+  <component name="RunManager" selected="Application.FactorialTask">
+    <configuration name="FactorialTask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad03.FactorialTask" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad03.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WatkiNowoczsnie" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lekcje.WatkiNowoczsnie" />
       <module name="Multithreading" />
@@ -110,8 +126,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="zad03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad03.zad03" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad03.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FactorialTask" />
+        <item itemvalue="Application.zad03" />
         <item itemvalue="Application.zad02" />
         <item itemvalue="Application.zad01" />
         <item itemvalue="Application.WatkiNowoczsnie" />
