@@ -1,3 +1,6 @@
+package org.yellowflash.Lekcje;
+
+
 public class Demo {
     public static void main(String[] args) throws InterruptedException {
         AuditLogger auditLogger = new AuditLogger();

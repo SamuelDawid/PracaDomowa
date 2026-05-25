@@ -1,4 +1,4 @@
-
+package org.yellowflash.Lekcje;
 public class UserServiceImpl implements UserService {
 
     @Override

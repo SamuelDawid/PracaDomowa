@@ -1,3 +1,4 @@
+package org.yellowflash.Lekcje;
 import java.lang.reflect.Proxy;
 
 public final class AuditProxyFactory {

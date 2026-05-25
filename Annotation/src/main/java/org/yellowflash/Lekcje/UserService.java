@@ -1,3 +1,5 @@
+package org.yellowflash.Lekcje;
+
 public interface UserService {
 
     void createUser(String email);
