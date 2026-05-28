@@ -1,0 +1,6 @@
+Po co używać verify(never()) zamiast po prostu pominąć asercję?
+Poniewaz jezeli pominiesz assert to test przejdzie nawet jezeli sms/email zostal wyslany, wtedy nie mamy pewnosci czy metoda byla wywolana.
+Verify sprawdza ze metoda napewno nie zostala wywolana.
+Dlaczego mockujemy EmailSender zamiast użyć prawdziwego serwisu mailowego?
+Poniewz takzdy test by wyslal wiadomosc podczas testu, dodatkowa configuracja jest potrzebna jak np : servera,
+polaczenie z tym serverem by zajmowalo duzo czas na kazdym tescie.
