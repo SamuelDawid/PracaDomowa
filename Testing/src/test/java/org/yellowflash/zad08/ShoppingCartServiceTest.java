@@ -1,13 +1,11 @@
 package org.yellowflash.zad08;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.yellowflash.zad07.exercise.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +80,7 @@ class ShoppingCartServiceTest {
         @Test
         @DisplayName("Powinnien rzucic IllegalArgumentException jezeli karta jest pusta")
         void shouldThrowExceptionForEmptyCart(){
-            //Arrage
+            //Arrange
             List<CartItem> emptyCart = new ArrayList<>();
             // act + assert
            assertThrows(IllegalArgumentException.class, () -> service.calculateTotal("123",emptyCart));
@@ -93,7 +91,7 @@ class ShoppingCartServiceTest {
         @Test
         @DisplayName("Powinien rzucic Excpetion jezeli product nie zostal znaleziony")
         void shouldThrowExceptionWhenProductNotFound(){
-            //Arrage
+            //Arrange
             when(productRepository.findById("P999")).thenReturn(Optional.empty());
             List<CartItem> cart = List.of(new CartItem("P999", 1));
 
@@ -103,6 +101,49 @@ class ShoppingCartServiceTest {
                     () -> service.calculateTotal("123", cart)
             );
             assertThat(ex.getMessage()).isEqualTo("Produkt nie znaleziony: P999");
+        }
+
+    }
+    @Nested
+    class getCartSummaryTest {
+        @Test
+        @DisplayName("Powinien rzucic Excpetion jezeli product nie zostal znaleziony")
+        void shouldThrowExceptionWhenProductNotFound(){
+            //Arrange
+            when(productRepository.findById("P999")).thenReturn(Optional.empty());
+            List<CartItem> cart = List.of(new CartItem("P999", 1));
+            // ACT + ASSERT
+            ProductNotFoundException ex = assertThrows(
+                    ProductNotFoundException.class,
+                    () -> service.getCartSummary("123", cart)
+            );
+            assertThat(ex.getMessage()).isEqualTo("Produkt nie znaleziony: P999");
+        }
+        @Test
+        @DisplayName("Powinien zwrocic Poprawny Card Summary")
+        void shouldReturnCorrectSummary(){
+            when(discountService.getDiscountForCustomer("123")).thenReturn(0.2);
+            when(productRepository.findById("P1")).thenReturn(Optional.of(P1));
+            when(productRepository.findById("P2")).thenReturn(Optional.of(P2));
+            List<CartItem> cartWithTwoItems = new ArrayList<>(
+                    List.of(new CartItem("P2",3),
+                            new CartItem("P1",1)));
+            CartSummary expected = new CartSummary(250,0.2,200,4);
+            //act
+            CartSummary result = service.getCartSummary("123",cartWithTwoItems);
+            //assert
+            assertThat(result).isEqualTo(expected);
+
+        }
+        @Test
+        @DisplayName("Powinien zwrocic Pusty raport")
+        void shouldReturnEmptySummary(){
+            //Arrange
+            List<CartItem> emptyCart = new ArrayList<>();
+            // act + assert
+            assertThrows(IllegalArgumentException.class, () -> service.getCartSummary("123",emptyCart));
+            verifyNoInteractions(productRepository);
+            verifyNoInteractions(discountService);
         }
     }
 
