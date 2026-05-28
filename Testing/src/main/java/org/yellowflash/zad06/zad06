@@ -1,0 +1,6 @@
+1. Jakie są zalety testów parametryzowanych w porównaniu z pisaniem 7 osobnych metod testowych?
+Jest to duzo krutsze, nie trzeba przepisywac tego samego asserThat .... 7 razy tylko wystarczy go podac w Values przed testem.
+ Latwiej czytaj i testowac, bo zawsze mozemy dodac kolejny przypadek, oraz jezeli zmieni sie sygnatura testu to w parametryzowanych zmieniasz w jednym miejscu.
+2. Kiedy lepiej użyć `@MethodSource` zamiast `@CsvSource`?
+CsvSource jest dobry jezeli mamy wyniki podane w kolumnach i mozna latwo przez nie przejsc i obiekty nie sa zbyt skaplikowane,
+MetodSource jest obre dla bardziej zlozonych obiektow poniewaz mozemy podac Stream jako argument dla testu.
