@@ -10,5 +10,7 @@ class StringUtilsTest {
     void shouldDetectPalindrome(String text) {
         assertTrue(StringUtils.isPalindrome(text));
     }
+        /*
 
+         */
 }

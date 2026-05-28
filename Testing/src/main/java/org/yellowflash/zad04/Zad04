@@ -1,0 +1,10 @@
+void testAdd()                    → givenTwoNumbers_whenAdding_ThenReturnSum();
+void testNullPointer()            → givenNullAsParameter_whenTesting_thenThrowsNullPointerException();
+void userLoginTest()              → givenUserNameAndPassword_whenTestingLogin_thenReturnLoginComplete();
+void shouldCalculatePrice()       → givenThreeItems_whenCalculatingPrice_thenReturnTotalPrice();
+void emptyListSizeTest()          → givenEmptyList_whenCheckingSize_thenReturnZero();
+
+Która konwencja jest najczytelniejsza dla nowego członka zespołu?
+Pierwsza jest mila dla oka, wiadomo o co chodzi odrazu. Given_when_than-> czasem moze byc tricky bo nie zawsze wywnioskujemy co ktos mial na mysli.
+Czy @DisplayName("Dzielenie przez zero rzuca wyjątek") może zastąpić długą nazwę metody?
+Tak moze, i jest to nawet bardzo mile widziane jednak krotka nazwa metody powinna i tak opisac test ktory robimy.
