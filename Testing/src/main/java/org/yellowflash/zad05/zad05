@@ -1,0 +1,5 @@
+Czym różni się assertThrows z assertTrue(ex.getMessage().contains("...")) od użycia hasMessageContaining(...) w AssertJ?
+One oba daja ten sam resultat przy czy AssertJ jest czytelniejszy i ma lepsze komunitakty, jednak ktorego uzywamy zalezy od danego projektu.
+Czy lepiej rzucać IllegalArgumentException czy własny InvalidEmailException? Uzasadnij.
+Zawsze lepiej jest rzucac wlasny wyjatek poniewaz wyjatki sa widziane przez nas programostow back-endu, sa to wiadomosci dla nas,
+im lepiej sformulowane i bardziej opisuja co sie stalo, latwiej jest nam je naprawic.
