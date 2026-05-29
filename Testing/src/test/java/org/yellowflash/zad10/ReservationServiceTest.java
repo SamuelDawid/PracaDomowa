@@ -196,7 +196,7 @@ class ReservationServiceTest {
             assertEquals("Sala Sala Konferencyjna A jest już zarezerwowana w tym terminie",ex.getMessage());
             verify(codeGenerator,never()).generate();
             verify(reservationRepository,never()).save(any());
-            assertThat(ex).isNot
+
         }
     }
 }
