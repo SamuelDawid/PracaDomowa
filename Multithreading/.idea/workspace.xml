@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3466c556-d3df-4a85-9784-01d335611da1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SamuelDawid&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SamuelDawid/PracaDomowa&quot;,
+    &quot;accountId&quot;: &quot;db4c0882-d6e6-42b9-9987-38ec984f4ab7&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3E1j0xoMi3mvX4Lv6SVaLFurtZG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FactorialTask.executor": "Run",
+    "Application.WatkiNowoczsnie.executor": "Run",
+    "Application.zad01.executor": "Run",
+    "Application.zad02.executor": "Run",
+    "Application.zad03.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "#8 on Multithreading",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\GitHub\PracaDomowa\Multithreading\src\main\java" />
+      <recent name="E:\GitHub\PracaDomowa\Multithreading\src\lekcje" />
+      <recent name="E:\GitHub\PracaDomowa\Multithreading\src" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="org.yellowflash.zad02" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FactorialTask">
+    <configuration name="FactorialTask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad03.FactorialTask" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad03.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WatkiNowoczsnie" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lekcje.WatkiNowoczsnie" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lekcje.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="zad01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad01.zad01" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad01.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="zad02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad02.zad02" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad02.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="zad03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.zad03.zad03" />
+      <module name="Multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.zad03.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FactorialTask" />
+        <item itemvalue="Application.zad03" />
+        <item itemvalue="Application.zad02" />
+        <item itemvalue="Application.zad01" />
+        <item itemvalue="Application.WatkiNowoczsnie" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3466c556-d3df-4a85-9784-01d335611da1" name="Changes" comment="" />
+      <created>1779352751276</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779352751276</updated>
+    </task>
+    <servers />
+  </component>
+</project>
