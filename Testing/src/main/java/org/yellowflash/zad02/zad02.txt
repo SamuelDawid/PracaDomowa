@@ -1,0 +1,4 @@
+Po co używamy @BeforeEach zamiast tworzyć new Calculator() w każdym teście?
+Poniewaz mozemy stworzyc tylko jedna instancje tego testu zamiast tworzyc nowa za kazdym razem, jest to dobre dla nas poniewaz nie musimy powtarzac tego kodu.
+Jaka jest różnica między @BeforeEach a @BeforeAll?
+Before all jest static ktore dziala tylko raz przed wszystkimi testami w klasie a before each leci przed kazdym testem, fresh setup za kazdym razem.

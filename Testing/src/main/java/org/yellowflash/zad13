@@ -1,0 +1,11 @@
+ | Klasa | Line coverage | Branch coverage | Czy 100%? Co jest niepokryte? |
+ ShoppingCartService 88% (44/50)83% (10/12)  2 branche niepokryte
+ TransferService 77%(55/71) 80% (8/10) 2 branche niepokryte
+ RomanNumerals 100% 100% 100%
+
+ 1.Co oznacza **branch coverage** w porównaniu z **line coverage**? Daj przykład linii, która ma 100% line coverage, ale niepełne branch coverage.
+ Ile coverage to ile lini kodu zostalo wykonanych podczas testow a branch to ile galezi decyzyjnych zostalo przetestowane.
+ 2. Dlaczego "test który wywołuje metody bez asercji" daje wysokie line coverage, ale jest **bezużyteczny**?
+testy bez asserci sprwadzaja tylko czy metoda sie odpali, ale nie jest sprawdzany wyniki
+ 3. Czy warto wymagać 100% coverage? Uzasadnij.
+ nie, poniwaz w niektorych klasach linie jak getter/settery itp, sa generowane i sprawdzane przez kompilator. Wiec najlepiej celowac 80%.

@@ -1,0 +1,6 @@
+Czym różni się verifyNoMoreInteractions od verifyNoInteractions?
+verifyNoMoreInteractions -> sprawdza czy po nie ma wiecej interacji po wszystkich poprzednich verify.
+Kiedy verifyNoInteractions-> sprawdza czy jakakolwiek metoda nie byla wywoala na mocku.
+Dlaczego logujemy też nieudane próby przelewu? Co byś zmienił, gdyby logger sam rzucał wyjątek?
+Poniewaz przy logowaniu nieudanych prob przelewu jestesmy w stanie sprawdzic co poszlo nie tak jezli np klijent sie skarzy. Logi sa do zrobienia Update itp.
+Oczywiscie mozna zrobic Exceptions do kazdego problem ale z logami podane jest wszystko. Czyli mozemy dodac try/catch zeby blad  nie psol operacji biznesowych.

@@ -1,0 +1,20 @@
+// Fragment 1
+assertEquals(3, list.size()); -> assertThat(list).hasSize(3);
+assertTrue(list.contains("java")); -> assertThat(list).contains("java");
+assertFalse(list.isEmpty()); -> assertThat(list).isNotEmpty();
+
+// Fragment 2
+assertNotNull(user); -> assertThat(user).isNotNull();
+assertEquals("Jan", user.getName()); -> assertThat(user.getName()).isEqualTo("Jan");
+assertTrue(user.getAge() > 18); -> assertThat(user.getAge()).isGreaterThan(18);
+
+// Fragment 3
+String[] expected = {"a", "b", "c"};
+assertArrayEquals(expected, actual); -> assertThat(actual).isEqualTo(expected);
+
+Wymień 3 zalety AssertJ względem standardowych asercji JUnit.
+Czytelniejszy komunikat przy bledzie,
+Lepsze metody dla typow,
+latwiej sie go czyta bo reakcja jest lancuchowa
+Co robi extracting(...) w AssertJ i kiedy jest przydatne?
+Wyciagamy konkretne pole z obiektow -> przydatne przy wyciaganiu obiektow w kolekcjach.

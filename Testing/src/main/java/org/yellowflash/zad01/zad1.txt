@@ -1,0 +1,20 @@
+Test sprawdzający czy metoda reverse("abc") zwraca "cba"
+Test Jednostkowy testujacy jedna metode z klasy.
+Test sprawdzający czy UserService poprawnie zapisuje użytkownika do bazy danych
+Test Integracyjny, mamy do czynienia z Servicem i baza danych i  repo.
+Test logowania użytkownika przez Selenium w przeglądarce Chrome
+Test End-to-End - testowanie czy aplikacja dziala
+Test sprawdzający czy OrderService wysyła email po złożeniu zamówienia (z mockiem EmailService)
+test jednostowy sprawdzamy jedna funkcje OrderService
+Test sprawdzający przepływ "zamówienie → płatność → wysyłka" przez wszystkie warstwy aplikacji
+Test end-to-end sprawdzamy cala aplikacje
+Test pojedynczej metody Calculator.divide(10, 2)
+test jednostowy - sprawedzamy metode divide
+
+
+Który poziom piramidy testów powinien mieć ich najwięcej? Dlaczego?
+testy jednostkowe poniewaz sa one najszybsze i sprawdzaja funkcjonowanie tylko jendej metody/funkcji.
+Dlaczego testy E2E są wolne i kruche?
+Poniewaz musimy zaladowac cala applikacje za kazdym razem jak testujemy, czyli ladujemy baze,docera,web socet etc. To zabiera czas
+W jakiej sytuacji test jednostkowy może stać się testem integracyjnym (bez zmiany kodu testu)?
+Kiedy zmienimy Moca na prawdziwy repo, kod sie nie zmienia ale character testu tak.

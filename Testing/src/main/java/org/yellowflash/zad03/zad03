@@ -1,0 +1,6 @@
+Dlaczego null i "" warto przetestować osobnymi przypadkami?
+Poniewaz null to brak wartosci a "" to wartosc ale pusta. Czyli podczas validacji null rzuca exception a "" zwraca false.
+Jak nazwałbyś szósty test dla palindromu z białymi znakami (np. "A ja")?
+Palindrom to jest dobry przyklad zrobienia testu @ParameterizedTest, wiec potrzeba jest tylko jedna nazwa aby bylo latwo przeczytac.
+Ale jak by trzeba bylo to :
+void shouldDetectPalindrome_whenStringContainsWhitespace();

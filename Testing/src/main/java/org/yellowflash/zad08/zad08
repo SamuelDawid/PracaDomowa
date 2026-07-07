@@ -1,0 +1,5 @@
+Po co używać verifyNoInteractions zamiast po prostu pominąć sprawdzenie?
+Tak samo jak verify never, test przejdzie nawet jezeli moc zostal wywolany. Ta opcja sprawdza ze nic sie nie wydarzylo.
+Co robi @InjectMocks "pod spodem"?
+PIerwsze jest Constructor Injection - szuka konstructora i wstrzykuje jak argument.
+Jezeli nie ma Constructora to szuka Setterow, jezeli ich brak to wstrzebykuje bezposrednio w pola prze refleksje.

@@ -1,0 +1,5 @@
+Kiedy używać ArgumentCaptor, a kiedy wystarczy verify(mock).method("konkretnaWartość")?
+Captor -> kiedy nie mamy dostepu i chceby sprawdzic kilka pol obiektu. A verify kiedy znamy dokladny obiekt z gory.
+Jak thenAnswer różni się od thenReturn? Podaj przykład, gdy thenAnswer jest niezbędne.
+thenReturn - zawsze zwraca te sama wartosc
+tenAnswer - wykonuje kod przy kazdym wywolaniu, - wiec kiedy wynik ma byc inny za kazdym razem
