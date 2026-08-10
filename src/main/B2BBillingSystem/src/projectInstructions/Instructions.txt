@@ -1,0 +1,215 @@
+# HW 02 — Fundamentals 2: B2B Billing System
+
+> A large synthesis exercise for Lesson 02. Integrates: `BigDecimal` (monetary precision, rounding), `String` (text blocks, formatting, report templates), `java.time` (`ZonedDateTime`, `LocalDate`, `YearMonth`, `Duration`/`Period`/`ChronoUnit`, time zones). You are building a mini billing backend for a company that trades internationally — with all the headaches that entails.
+
+---
+
+## Goal
+
+After completing this assignment you will be able to:
+
+- design financial operations on `BigDecimal` without precision and rounding pitfalls,
+- handle **multiple time zones** in a single system (issuer in Tokyo, recipient in Warsaw),
+- implement currency conversion with **historical exchange rates** (rate from the invoice date, not today),
+- generate multi-section reports using text blocks and `String.formatted`,
+- calculate billing periods and late-payment interest,
+- choose the right time type: `Instant` vs `ZonedDateTime` vs `LocalDate` vs `YearMonth`.
+
+---
+
+## Domain Context
+
+Your company sells software to clients worldwide.
+Invoices are issued in the client's local currency, but the accounting department needs everything converted to PLN at the exchange rate from the issue date.
+A client in Warsaw sees dates in `Europe/Warsaw`, a client in Tokyo sees them in `Asia/Tokyo`. The accountant sees everything in PLN.
+
+Additionally: some clients pay late — you need to charge late-payment interest (statutory 11.5% per year), and the monthly report must show the top 3 clients by revenue.
+
+You cannot do this with `double`. And you cannot do this manually without `java.time`.
+
+---
+
+## Part A — MVP
+
+### A1. Domain Types
+
+```java
+record Money(BigDecimal amount, String currency) {
+    public Money {
+        Objects.requireNonNull(amount);
+        Objects.requireNonNull(currency);
+        if (amount.signum() < 0)
+            throw new IllegalArgumentException("negative amount");
+        if (currency.length() != 3)
+            throw new IllegalArgumentException("currency must be 3 letters");
+        currency = currency.toUpperCase();
+        amount = amount.setScale(2, RoundingMode.HALF_EVEN);
+    }
+}
+
+record Invoice(
+    String number,                // e.g. "INV/2024/10/001"
+    String clientName,
+    Money netAmount,
+    BigDecimal vatRate,           // 0.23 for 23%
+    ZonedDateTime issuedAt,
+    LocalDate dueDate             // payment deadline
+) {
+    public Invoice {
+        Objects.requireNonNull(number);
+        Objects.requireNonNull(clientName);
+        Objects.requireNonNull(netAmount);
+        Objects.requireNonNull(issuedAt);
+        Objects.requireNonNull(dueDate);
+        if (vatRate.signum() < 0 || vatRate.compareTo(BigDecimal.ONE) > 0)
+            throw new IllegalArgumentException("vatRate out of [0, 1]");
+    }
+}
+```
+
+### A2. Gross Amount Calculator
+
+Class `BillingServices.InvoiceCalculator` with the following methods:
+
+- `static Money grossAmount(Invoice i)` — returns the gross amount (`net * (1 + vatRate)`), rounded to 2 decimal places using `HALF_EVEN`, in the same currency as net.
+- `static Money vatAmount(Invoice i)` — the VAT amount alone.
+- `static Money totalNet(Invoice... invoices)` — sum of net amounts; **throws** `IllegalArgumentException` if not all invoices share the same currency.
+
+### A3. Simple Report
+
+`static String renderSimpleReport(ZoneId displayZone, Invoice... invoices)` — returns a multi-line string listing invoices with a summary:
+
+```
+Invoice Report (display zone: Europe/Warsaw)
+──────────────────────────────────────────────────
+ INV/2024/10/001 | Acme Corp    | 2024-10-15 14:30 | net 1,000.00 PLN | gross 1,230.00 PLN
+ INV/2024/10/002 | Globex       | 2024-10-16 09:15 | net   100.37 EUR | gross   123.46 EUR
+──────────────────────────────────────────────────
+```
+
+The date in the report **must be displayed in the `displayZone` time zone** (not in the original issuer's time zone).
+
+---
+
+## Part B — Extension
+
+### B1. Historical Exchange Rates
+
+```java
+record ExchangeRateTable(Map<LocalDate, Map<String, BigDecimal>> ratesByDate) {
+    // rates[date][currency] = how many PLN per 1 unit of the currency
+}
+```
+
+Sample data (hardcoded as a factory method):
+
+```java
+static ExchangeRateTable sampleRates() {
+    Map<LocalDate, Map<String, BigDecimal>> m = new HashMap<>();
+    m.put(LocalDate.of(2024, 10, 15), Map.of(
+        "PLN", new BigDecimal("1.0000"),
+        "EUR", new BigDecimal("4.3250"),
+        "USD", new BigDecimal("3.9800"),
+        "JPY", new BigDecimal("0.0265")
+    ));
+    m.put(LocalDate.of(2024, 10, 16), Map.of(
+        "PLN", new BigDecimal("1.0000"),
+        "EUR", new BigDecimal("4.3310"),
+        "USD", new BigDecimal("3.9875"),
+        "JPY", new BigDecimal("0.0264")
+    ));
+    // ... add ~5 dates
+    return new ExchangeRateTable(m);
+}
+```
+
+`ExchangeRateTable` methods:
+
+- `BigDecimal rateOf(String currency, LocalDate onDate)` — returns the rate from exactly that date or the **nearest earlier date** (e.g., Friday's rate is used on the weekend). If no earlier date exists — `IllegalStateException("no rate for " + currency + " on or before " + onDate)`.
+- `Money convertTo(Money source, String targetCurrency, LocalDate onDate)` — converts `source` to `targetCurrency` at the rate on `onDate`. Result rounded to 2 decimal places using `HALF_EVEN`.
+
+### B2. Billing Periods — Grouping by Month
+
+`static Map<YearMonth, Money> monthlyGrossInPln(List<Invoice> invoices, ExchangeRateTable rates)`:
+
+- groups invoices by `YearMonth` from the issue date (in the issuer's time zone — do not convert to another zone),
+- converts each invoice to PLN at the exchange rate from the issue date,
+- returns a map `YearMonth → total gross in PLN`.
+
+### B3. Late-Payment Interest
+
+`static Money lateInterest(Invoice invoice, LocalDate paidOn, BigDecimal annualRate)`:
+
+- if `paidOn <= dueDate` — returns `new Money(BigDecimal.ZERO, invoice.netAmount().currency())`,
+- otherwise calculates days overdue: `ChronoUnit.DAYS.between(dueDate, paidOn)`,
+- interest: `gross * annualRate * daysLate / 365`,
+- rounding: `HALF_EVEN` to 2 decimal places,
+- returns in the invoice's currency.
+
+### B4. Multi-Section Monthly Report
+
+`static String renderMonthlyReport(YearMonth month, List<Invoice> invoices, ExchangeRateTable rates, ZoneId displayZone)`:
+
+Report structure (**text block template + `formatted`**):
+
+```
+╔══════════════════════════════════════════════════╗
+║ Monthly Report: 2024-10 (zone Europe/Warsaw)       ║
+╠══════════════════════════════════════════════════╣
+║ Total invoices: 12                                 ║
+║ Total gross in PLN: 47,328.15                      ║
+╠══════════════════════════════════════════════════╣
+║ Original currencies:                               ║
+║   PLN: 8 invoices, 25,000.00 PLN                   ║
+║   EUR: 3 invoices,  4,500.00 EUR                   ║
+║   USD: 1 invoice,     800.00 USD                   ║
+╠══════════════════════════════════════════════════╣
+║ Top 3 clients (by gross in PLN):                   ║
+║  1. Acme Corp ............... 15,320.00 PLN        ║
+║  2. Globex .................. 12,100.00 PLN        ║
+║  3. Initech .................  9,850.00 PLN        ║
+╚══════════════════════════════════════════════════╝
+```
+
+- Use a text block with placeholders `%s` / `%,.2f` and the `.formatted(...)` method.
+- The "Original currencies" section groups invoices by currency (without converting — shows original totals).
+- "Top 3 clients" — after conversion to PLN, all clients in one currency.
+- Column alignment (dot-fill) — calculate manually or use `String.format("%-20s", name).replace(' ', '.')`.
+
+---
+
+## Part C — Advanced Extension
+
+### C1. Split Payment
+
+Add a `boolean splitPayment` field to `Invoice`. For invoices with `splitPayment == true`:
+
+- method `static SplitPaymentBreakdown split(Invoice i)` returning a record `(Money mainAccount, Money vatAccount)`,
+- `mainAccount` = net amount (goes to the current account),
+- `vatAccount` = VAT amount only (goes to the dedicated VAT account).
+
+### C2. Correction Invoice
+
+```java
+record CorrectionInvoice(
+    String correctionNumber,
+    String originalNumber,
+    Money amountAdjustment,      // negative = decrease, positive = increase
+    LocalDate issuedOn,
+    String reason
+) {}
+```
+
+`static Money effectiveGross(Invoice original, List<CorrectionInvoice> corrections)` — gross amount including all corrections (summing in one currency with currency consistency check).
+
+### C3. CLI
+
+In `main`, parse arguments in the format `--month 2024-10 --client "Acme Corp"`:
+
+- `--month YYYY-MM` — generates `renderMonthlyReport` for that month,
+- `--client NAME` — filters invoices to a single client,
+- no arguments — defaults to a report for the current month.
+
+No CLI libraries — only a manual loop over `args[]`.
+
+---
