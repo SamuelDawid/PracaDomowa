@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3fed3781-16a1-4d97-8591-88f66d8118a8" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit3 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "SamuelDawid"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SamuelDawid/PracaDomowa",
+    "accountId": "db4c0882-d6e6-42b9-9987-38ec984f4ab7"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="3DOD3HKQTludOfh6tHUlVzdWjwt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.NestedTwoKeyHashMapTest.testContainsKeys.executor": "Run",
+    "JUnit.NestedTwoKeyHashMapTest.testContainsValue.executor": "Run",
+    "JUnit.NestedTwoKeyHashMapTest.testPutAndGet.executor": "Run",
+    "JUnit.NestedTwoKeyHashMapTest.testRemove.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
+    "git-widget-placeholder": "Collections",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.yellowflash" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.yellowflash" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.NestedTwoKeyHashMapTest.testContainsValue">
+    <configuration name="NestedTwoKeyHashMapTest.testContainsKeys" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MapExercise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.yellowflash" />
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.NestedTwoKeyHashMapTest" />
+      <option name="METHOD_NAME" value="testContainsKeys" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NestedTwoKeyHashMapTest.testContainsValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MapExercise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.yellowflash" />
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.NestedTwoKeyHashMapTest" />
+      <option name="METHOD_NAME" value="testContainsValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NestedTwoKeyHashMapTest.testPutAndGet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MapExercise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.yellowflash" />
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.NestedTwoKeyHashMapTest" />
+      <option name="METHOD_NAME" value="testPutAndGet" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NestedTwoKeyHashMapTest.testRemove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MapExercise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yellowflash.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.yellowflash" />
+      <option name="MAIN_CLASS_NAME" value="org.yellowflash.NestedTwoKeyHashMapTest" />
+      <option name="METHOD_NAME" value="testRemove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NestedTwoKeyHashMapTest.testContainsValue" />
+        <item itemvalue="JUnit.NestedTwoKeyHashMapTest.testContainsKeys" />
+        <item itemvalue="JUnit.NestedTwoKeyHashMapTest.testRemove" />
+        <item itemvalue="JUnit.NestedTwoKeyHashMapTest.testPutAndGet" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3fed3781-16a1-4d97-8591-88f66d8118a8" name="Changes" comment="" />
+      <created>1778144024888</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778144024888</updated>
+    </task>
+    <servers />
+  </component>
+</project>
